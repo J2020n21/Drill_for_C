@@ -1,0 +1,53 @@
+//W2: Call by Value / Refernece
+#include <iostream>
+using namespace std;
+
+int fee(int hours, int minutes); //call-by-value example
+void getNumbers(int& input1, int& input2); //call-by-refernece example
+void swapNumbers(int& var1, int& var2);
+void showResult(int output1, int output2);
+
+int  main() {
+	//Call by value 
+	cout << "Type hours and minutes you worked: " << endl;
+	int  h = 3, m = 50;
+	cout << "You can get at least " << fee(h, m); << "\." << endl;
+
+	//Call by Reference example
+	int firstNum, secondNum = 0;
+	getNumbers(firstNum, secondNum);
+	swapNumbers(firstNum, secondNum);
+	showResult(firstNum, secondNum);
+}
+
+//value: common fitfall: redefinition error.
+int fee(int hours, int minutes)
+{
+	int totalMinutes;			//OK
+	//int minutesWorked;		//No! redefinition error.
+	int fee = hours * 9000;
+	return fee;
+}
+
+//reference:	
+void getNumbers(int& input1, int& input2)
+{
+	cout << "Type two number to print swaped." << endl;;
+	cin >> input1 >> input2;
+}
+
+void swapNumbers(int& var1, int& var2)
+{
+	int temp;
+
+	temp = var1;
+	var1 = var2;
+	var2 = temp;
+
+}
+
+void showResult(int output1, int output2) //it's call by value
+{
+	cout << "swaped:" << output1 << "  and  " << output2;
+
+}
