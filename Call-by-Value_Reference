@@ -11,7 +11,7 @@ int  main() {
 	//Call by value 
 	cout << "Type hours and minutes you worked: " << endl;
 	int  h = 3, m = 50;
-	cout << "You can get at least " << fee(h, m); << "\." << endl;
+	cout << "You can get at least " << fee(h, m) << "\." << endl;
 
 	//Call by Reference example
 	int firstNum, secondNum = 0;
