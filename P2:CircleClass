@@ -1,0 +1,64 @@
+//make class Circle with private attribute and public methods.
+#include <iostream>
+using namespace std;
+const float PI = 3.141592;
+
+class Circle
+{
+private:
+		float RadiusOfCircle;
+public: //calculate methods
+	void SetRadius(float radius); //set the  RadiusOfCircle
+	float GetRadius(); //return the  RadiusOfCircle
+	float Area();//Calculating area :PI* r * r
+	float Diameter();//Calculating diameter: 2 * r
+	float Circumference();//Calculating circumference: PI * diameter
+	//All these member functions must use the private member variable, which is a radius of circle
+
+};
+
+int main()
+{
+	float radius;
+	Circle c;
+	cout << "Circle: type an radius you want to calculate: ";
+	cin >> radius;
+	cout << endl;
+
+	c.SetRadius(radius);
+	cout << "The radius is : " << c.GetRadius() << endl;
+	cout << "The area of the circle is: " << c.Area() << endl;
+	cout << "The diameter of the circle is: " << c.Diameter() << endl;
+	cout << "The circumference of the circle is: " << c.Circumference() << endl;
+}
+
+void Circle::SetRadius(float radius)
+{
+	RadiusOfCircle = radius;	
+}
+
+float Circle::GetRadius()
+{
+	return RadiusOfCircle;
+}
+
+float Circle::Area()
+{
+	float area;
+	area = PI * RadiusOfCircle * RadiusOfCircle;
+	return area;
+}
+
+float Circle::Diameter()
+{
+	float diameter;
+	diameter = 2 * RadiusOfCircle;
+	return diameter;
+}
+
+float Circle::Circumference()
+{
+	float circumference;
+	circumference = Diameter() * PI;
+	return circumference;
+}
