@@ -1,0 +1,82 @@
+// W4;assignment1: Insertion sorting- show top five players and their score.
+//Improve: Depending on the length "scores.txt", the constant needs to be changed
+#include <fstream>
+#include <iostream>
+#include <string>
+using namespace std;
+const int MAX_PEOPLE = 6, MAX_LEN_SCORE = 6;
+const int SHOWN_LIMIT = 5;                    //how many will be shown?
+
+void getHighScores(string people[], int scores[], int numberUsed);
+void sort(string people[], int scores[], int numberUsed);
+int biggestIndex(const string people[], const int scores[], int numberUsed,
+                 int &count);
+void swap(int &v1, int &v2);
+
+int main() {
+  string people[MAX_PEOPLE];
+  int score[MAX_LEN_SCORE];
+  getHighScores(people, score, MAX_PEOPLE);
+
+  // print out in the range of (SHOWN_LIMIT)
+
+  for (int index = 0; index < SHOWN_LIMIT; index++) {
+    cout << "no." << index + 1 << " is " << people[index]
+         << " , and the score is: " << score[index] << endl;
+  }
+}
+
+void getHighScores(string people[], int scores[], int numberUsed) {
+  string p;
+  int s = 0;
+  int index = 0;
+  fstream readStream;
+  readStream.open("scores.txt");
+  while (readStream >> p >> s) {
+    // cout << "index:" << index << endl; //check code
+    people[index] = p;
+    scores[index] = s;
+    index++;
+  }
+
+  sort(people, scores, numberUsed);
+}
+
+void sort(string people[], int scores[], int numberUsed) {
+// Get the biggtest index from biggestIndex(),
+// then change the order of array elements by swap()
+
+  int next = 0;
+  int count = 0;
+
+  for (int index = 0; index < numberUsed - 1; index++) {
+    // cout << "sort" << endl; //check code
+    next = biggestIndex(people, scores, numberUsed,
+                        count);        // get the biggest's index
+    swap(people[index], people[next]); // swap the value
+    swap(scores[index], scores[next]);
+    // sorting start index has to be changed each time : using 'count' variable
+    count++; // next index is gonna be start after the sorted one(s).
+  }
+}
+
+int biggestIndex(const string people[], const int scores[], int numberUsed,
+                 int &count) { // find biggest value's index and return it
+  int big_val = scores[count];
+  int big_index = count;
+
+  for (int index = count + 1; index < numberUsed; index++) {
+    if (scores[index] > big_val) {
+      big_val = scores[index];
+      big_index = index;
+    }
+  }
+  return big_index;
+}
+
+void swap(int &v1, int &v2) {
+  int temp;
+  temp = v1;
+  v1 = v2;
+  v2 = temp;
+}
