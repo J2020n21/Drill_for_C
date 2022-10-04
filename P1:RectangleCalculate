@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+public:
+  Rectangle(double width, double height);
+  Rectangle();
+
+  void setR(double width, double height);
+  double areaR(double width, double height);
+  void display();
+
+private:
+  double width;
+  double height;
+};
+
+
+
+int main() {
+  Rectangle r1(10, 7);
+  Rectangle r2;
+  r1.display();
+  r2.display();
+}
+
+Rectangle::Rectangle(double width, double height)
+    : width(width), height(height) {
+  cout << "2 parameters constructor executed" << endl;
+  setR(width, height);
+};
+
+Rectangle::Rectangle() : width(5), height(5) {
+  cout << "1 parameters constructor executed" << endl;
+  setR(width, height);
+};
+
+void Rectangle::setR(double width, double height) {
+  width = width;
+  height = height;
+};
+
+double Rectangle::areaR(double width, double height) { return width * height; };
+
+void Rectangle::display() {
+  cout << "width:" << width << endl;
+  cout << "height:" << height << endl;
+  cout << "area:" << areaR(width, height) << endl;
+  cout << endl;
+};
